@@ -1,3 +1,4 @@
+package pom.xml;
 public class ScontoMese implements Sconto {
     int mese;
     double percentuale;

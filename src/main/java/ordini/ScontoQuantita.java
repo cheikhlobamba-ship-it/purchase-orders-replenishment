@@ -1,3 +1,4 @@
+package pom.xml;
 public class ScontoQuantita implements Sconto {
     int[] soglie;          
     double[] percentuali; 

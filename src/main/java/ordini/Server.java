@@ -1,3 +1,4 @@
+package pom.xml;
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.HttpExchange;
 import java.io.IOException;
@@ -6,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
-
+import java.io.InputStream;
 public class Server {
 
     public static void main(String[] args) throws IOException {
@@ -17,13 +18,18 @@ public class Server {
         server.start();
         System.out.println("Server avviato: apri http://localhost:8080");
     }
+    static String leggiRisorsa(String nome) throws IOException {
+        try (InputStream in = Server.class.getResourceAsStream("/" + nome)) {
+            return new String(in.readAllBytes(), StandardCharsets.UTF_8);
+        }
+    }
 
     static void paginaHome(HttpExchange scambio) throws IOException {
-        invia(scambio, Files.readString(Path.of("index.html")), "text/html");
+        invia(scambio, leggiRisorsa("index.html"), "text/html");
     }
 
     static void foglioStile(HttpExchange scambio) throws IOException {
-        invia(scambio, Files.readString(Path.of("style.css")), "text/css");
+        invia(scambio, leggiRisorsa("style.css"), "text/css");
     }
 
     static void risultati(HttpExchange scambio) throws IOException {

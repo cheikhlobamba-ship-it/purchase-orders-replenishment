@@ -1,0 +1,140 @@
+
+:root {
+    --sfondo: #f4f5f7;
+    --card: #ffffff;
+    --testo: #1f2430;
+    --secondario: #6b7280;
+    --accento: #0f766e;
+    --accento-chiaro: #e6f4f2;
+    --bordo: #e2e5ea;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 40px 16px;
+    font-family: "Segoe UI", system-ui, sans-serif;
+    background: var(--sfondo);
+    color: var(--testo);
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin: 0 0 24px;
+}
+
+/* modulo */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--card);
+    border: 1px solid var(--bordo);
+    border-radius: 14px;
+    padding: 24px;
+}
+
+label {
+    margin-top: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--secondario);
+}
+
+input, select {
+    padding: 10px 12px;
+    font-size: 1rem;
+    border: 1px solid var(--bordo);
+    border-radius: 8px;
+}
+
+input:focus, select:focus {
+    outline: 2px solid var(--accento);
+    border-color: transparent;
+}
+
+button {
+    margin-top: 16px;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accento);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* card dei risultati */
+.card {
+    background: var(--card);
+    border: 1px solid var(--bordo);
+    border-radius: 14px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+}
+
+.card h2 {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+}
+
+.card p {
+    margin: 4px 0;
+    color: var(--secondario);
+}
+
+.card .prezzo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--testo);
+}
+
+/* il più economico */
+.migliore {
+    border: 2px solid var(--accento);
+    background: var(--accento-chiaro);
+}
+
+.migliore .prezzo {
+    color: var(--accento);
+}
+
+.badge {
+    display: inline-block;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #fff;
+    background: var(--accento);
+    border-radius: 999px;
+}
+
+/* fornitori esclusi: sbiaditi e tratteggiati */
+.escluso {
+    opacity: 0.55;
+    border-style: dashed;
+}
+
+a {
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: 600;
+    color: var(--accento);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
