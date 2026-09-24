@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <title>Purchase Orders</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>Ordine di rifornimento</h1>
+    <form action="/risultati" method="get">
+        <label>Quantità</label>
+        <input type="number" name="quantita" min="1" value="12">
+
+        <label>Mese dell'ordine</label>
+        <select name="mese">
+            <option value="1">Gennaio</option>
+            <option value="2">Febbraio</option>
+            <option value="3">Marzo</option>
+            <option value="4">Aprile</option>
+            <option value="5">Maggio</option>
+            <option value="6">Giugno</option>
+            <option value="7">Luglio</option>
+            <option value="8">Agosto</option>
+            <option value="9" selected>Settembre</option>
+            <option value="10">Ottobre</option>
+            <option value="11">Novembre</option>
+            <option value="12">Dicembre</option>
+        </select>
+
+        <button type="submit">Calcola</button>
+    </form>
+</body>
+</html>
