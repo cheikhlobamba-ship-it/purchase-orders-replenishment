@@ -1,4 +1,4 @@
-package ordini;
+package src.test.java.ordini;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

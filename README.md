@@ -11,18 +11,27 @@ Progetto realizzato come test di ingresso per Regesta.
 
 ## Come eseguire
 
-Requisiti: **JDK 25** (o qualsiasi versione dalla 17 in su).
+Requisiti: **JDK 25** e **Maven 3.9** o superiori.
 
 ```
 git clone https://github.com/cheikhlobamba-ship-it/purchase-orders-replenishment.git
 cd purchase-orders-replenishment
-java Server.java
+mvn exec:java
 ```
 
 Poi aprire il browser su **http://localhost:8080**.
 
-Non sono richieste dipendenze esterne, build tool o database: il progetto usa
-esclusivamente la libreria standard di Java.
+L'unica dipendenza esterna è JUnit, usata dai soli test: l'applicazione si basa
+esclusivamente sulla libreria standard di Java.
+
+### Test
+
+```
+mvn test
+```
+
+La suite verifica i due esempi della specifica e i casi limite descritti nella
+sezione *Regole di calcolo*.
 
 ---
 
@@ -67,18 +76,28 @@ i giorni di spedizione sono sempre visibili accanto al prezzo.
 
 ## Architettura
 
+Il progetto segue la struttura standard Maven.
+
 ```
-Main.java             avvio da riga di comando (output su console)
-Server.java           server HTTP, espone il form e la pagina dei risultati
-Catalogo.java         sorgente dei dati: fornitori, prezzi, stock, sconti
-Offerta.java          offerta di un fornitore per un articolo
-Sconto.java           interfaccia comune a tutte le regole di sconto
-ScontoSoglia.java     sconto sul valore totale dell'ordine
-ScontoQuantita.java   sconto a fasce sulla quantità ordinata
-ScontoMese.java       sconto stagionale legato al mese
-index.html            interfaccia utente
-style.css             foglio di stile
+pom.xml                                configurazione del progetto e dipendenze
+src/main/java/ordini/
+    Main.java                          avvio da riga di comando (output su console)
+    Server.java                        server HTTP: form e pagina dei risultati
+    Catalogo.java                      sorgente dei dati: fornitori, prezzi, stock, sconti
+    Offerta.java                       offerta di un fornitore per un articolo
+    Sconto.java                        interfaccia comune a tutte le regole di sconto
+    ScontoSoglia.java                  sconto sul valore totale dell'ordine
+    ScontoQuantita.java                sconto a fasce sulla quantità ordinata
+    ScontoMese.java                    sconto stagionale legato al mese
+src/main/resources/
+    index.html                         interfaccia utente
+    style.css                          foglio di stile
+src/test/java/ordini/
+    OrdiniTest.java                    suite di test
 ```
+
+Le risorse statiche sono lette dal classpath, non dal filesystem: l'applicazione
+funziona quindi allo stesso modo eseguita da sorgente o impacchettata in un jar.
 
 ### Le regole di sconto
 
@@ -110,8 +129,11 @@ con una lettura da database richiederebbe di modificare solo quella classe.
 ## Scelte tecniche
 
 **Java senza framework.** La consegna lasciava libertà di scelta. Ho preferito
-la libreria standard per mantenere il progetto avviabile con un solo comando, 
-senza installazioni preliminari da parte di chi lo valuta. 
+la libreria standard per mantenere il progetto avviabile con un solo comando,
+senza installazioni preliminari da parte di chi lo valuta.
+
+**Maven** per la gestione del progetto: struttura standard, esecuzione dei test
+con un comando e possibilità di aggiungere dipendenze senza interventi manuali.
 
 **Dati definiti nel codice.** La consegna indica esplicitamente questa
 possibilità. I dati sono isolati in `Catalogo`, che funge da unico punto di
@@ -154,7 +176,10 @@ richiesta è in grado di evadere l'ordine.
 - `ScontoQuantita` usa due array paralleli per soglie e percentuali. Una lista di
   oggetti "fascia" sarebbe più robusta, rendendo impossibile per costruzione il
   disallineamento tra i due array.
-  
+
+- La lettura dei parametri della richiesta assume un ordine fisso
+  (`quantita`, `mese`). Un parsing per nome sarebbe più tollerante.
+
 - Il catalogo è attualmente limitato a un singolo articolo. L'estensione a più
   articoli richiederebbe l'aggiunta di un'entità `Articolo` e un filtro
   preliminare sulle offerte.
