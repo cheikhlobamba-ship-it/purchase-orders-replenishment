@@ -1,4 +1,4 @@
-package pom.xml;
+package ordini;
 public interface Sconto {
     double calcola(double lordo, int quantita, int mese);
 }

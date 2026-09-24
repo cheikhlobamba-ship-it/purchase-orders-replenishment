@@ -1,4 +1,4 @@
-package pom.xml;
+package ordini;
 public class ScontoMese implements Sconto {
     int mese;
     double percentuale;

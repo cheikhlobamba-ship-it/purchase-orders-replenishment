@@ -1,4 +1,4 @@
-package pom.xml;
+package ordini;
 public class ScontoSoglia implements Sconto {
     double soglia;
     double percentuale;

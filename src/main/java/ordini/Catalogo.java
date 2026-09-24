@@ -1,4 +1,4 @@
-package pom.xml;
+package ordini;
 import java.util.List;
 
 public class Catalogo {
