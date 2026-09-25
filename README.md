@@ -183,3 +183,6 @@ richiesta è in grado di evadere l'ordine.
 - Il catalogo è attualmente limitato a un singolo articolo. L'estensione a più
   articoli richiederebbe l'aggiunta di un'entità `Articolo` e un filtro
   preliminare sulle offerte.
+
+  ## Video demo
+  https://drive.google.com/file/d/1-BwrvzbEQ4Svhe9swVrcqr_gXNxH-8_f/view?usp=sharing
